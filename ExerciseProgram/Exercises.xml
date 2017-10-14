@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercises>
+  <!-- Strength Exercises -->
+  <!-- Default Weight Type: Barbell -->
+  <strength>
+    <exercise name="Squat">
+        <mg>Quads</mg>
+        <mg>Glutes</mg>
+        <mg>Hamstrings</mg>
+   </exercise>
+    
+   <exercise name="Deadlift">
+      <mg>Quads</mg>
+      <mg>Glutes</mg>
+      <mg>Hamstrings</mg>
+   </exercise>
+
+    <exercise name="Dumbbell Curls" weight="Dumbbell">
+      <mg>Biceps</mg>
+      <mg>Forearms</mg>
+    </exercise>
+    
+  </strength>
+  
+  <!-- Flexibility Exercises -->
+  <!-- Default Weight Type: Bodyweight -->
+  <flex>
+    <exercise name="Toe-Touches">
+        <mg>Hamstrings</mg>
+    </exercise>
+    
+  </flex>
+</exercises>
