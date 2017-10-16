@@ -6,29 +6,11 @@ using System.Threading.Tasks;
 
 namespace ExerciseProgram
 {
-    /*public enum MuscleGroup
-    {
-        Quadriceps,
-        Hamstrings,
-        Glutes,
-        Calves,
-        Pectorals,
-        Hips,
-        Lats,
-        Traps,
-        Deltoids,
-        Triceps,
-        Biceps,
-        Forearms,
-        Abdominals,
-        LowerBack
-    }*/
-
     public enum ExerciseType
     {
         Flexibility,
         Strength,
-        Aerobic
+        Aerobic,
     }
 
     public enum WeightType
@@ -37,7 +19,7 @@ namespace ExerciseProgram
         Dumbbell,
         Bodyweight,
         Machine,
-        Unknown
+        Unknown,
     }
 
     public class ExerciseItem
@@ -53,11 +35,11 @@ namespace ExerciseProgram
             Muscles = muscles;
 
             WeightType w;
-            Enum.TryParse(weightType, out w);
+            Enum.TryParse(weightType, true, out w);
             Weight = w;
 
             ExerciseType t;
-            Enum.TryParse(type, out t);
+            Enum.TryParse(type, true, out t);
             Type = t;
         }
     }

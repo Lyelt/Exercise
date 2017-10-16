@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="574" Width="692">
     <Grid Margin="0,0,11,-1">
-        <ComboBox x:Name="weightTypeComboBox" HorizontalAlignment="Left" Margin="18,277,0,0" VerticalAlignment="Top" Width="102"/>
-        <ComboBox x:Name="exerciseTypeComboBox" HorizontalAlignment="Left" Margin="18,340,0,0" VerticalAlignment="Top" Width="102"/>
-        <ListBox x:Name="muscleGroupListBox" HorizontalAlignment="Left" Height="186" Margin="13,49,0,0" VerticalAlignment="Top" Width="184">
+        <ComboBox x:Name="weightTypeComboBox" HorizontalAlignment="Left" Margin="207,75,0,0" VerticalAlignment="Top" Width="102" SelectionChanged="weightTypeComboBox_SelectionChanged"/>
+        <ComboBox x:Name="exerciseTypeComboBox" HorizontalAlignment="Left" Margin="207,138,0,0" VerticalAlignment="Top" Width="102" SelectionChanged="exerciseTypeComboBox_SelectionChanged"/>
+        <ListBox x:Name="muscleGroupListBox" HorizontalAlignment="Left" Height="186" Margin="13,49,0,0" VerticalAlignment="Top" Width="184" SelectionChanged="muscleGroupListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -28,12 +28,12 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label x:Name="label" Content="Exercise Type" HorizontalAlignment="Left" Margin="13,314,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label2" Content="Weight Type" HorizontalAlignment="Left" Margin="13,251,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Exercise Type" HorizontalAlignment="Left" Margin="202,112,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Weight Type" HorizontalAlignment="Left" Margin="202,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.592,1.115"/>
         <Label x:Name="label3" Content="Muscle Group" HorizontalAlignment="Left" Margin="13,23,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label4" Content="Exercises" HorizontalAlignment="Left" Margin="369,23,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Filter" HorizontalAlignment="Left" Margin="202,49,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.107,-2.15"/>
-        <Button x:Name="button1" Content="Clear" HorizontalAlignment="Left" Margin="202,83,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="525,23,0,0" TextWrapping="Wrap" Text="Search" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="207,190,0,0" VerticalAlignment="Top" Width="75" Click="clearButton_Click"/>
+        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="23" Margin="525,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="searchBox_TextChanged"/>
+        <Label x:Name="label4_Copy" Content="Search:" HorizontalAlignment="Left" Margin="477,20,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
