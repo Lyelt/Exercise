@@ -28,6 +28,7 @@ namespace ExerciseProgram
         public List<MuscleGroup> Muscles { get; set; }
         public ExerciseType Type { get; set; }
         public WeightType Weight { get; set; }
+        public string Description { get; set; }
 
         public ExerciseItem(string name, List<MuscleGroup> muscles, string type, string weightType) 
         {

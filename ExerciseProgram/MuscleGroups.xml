@@ -3,21 +3,17 @@
   <group name="Quads" 
          fullname="Quadriceps"
          location="Front of Thighs"
-         bodypart="Legs"
-         description=""/>
+         bodypart="Legs"/>
     <group name="Pecs" 
          fullname="Pectorals"
          location="Chest"
-         bodypart="Chest"
-         description=""/>
+         bodypart="Chest"/>
 	<group name="Hamstrings" 
          fullname="Hamstrings"
          location="Back of Thighs"
-         bodypart="Legs"
-         description=""/>
+         bodypart="Legs"/>
 	<group name="Abs" 
          fullname="Abdominals"
          location="Waist"
-         bodypart="Stomach"
-         description=""/>
+         bodypart="Stomach"/>
 </musclegroups>

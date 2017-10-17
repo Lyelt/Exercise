@@ -12,15 +12,13 @@ namespace ExerciseProgram
         public string FullName { get; set; }
         public string BodyPart { get; set; }
         public string Location { get; set; }
-        public string Description { get; set; }
 
-        public MuscleGroup (string name, string fullName, string bodyPart, string loc, string desc)
+        public MuscleGroup (string name, string fullName, string bodyPart, string loc)
         {
             Name = name;
             FullName = fullName;
             BodyPart = bodyPart;
             Location = loc;
-            Description = desc;
         }
     }
 }

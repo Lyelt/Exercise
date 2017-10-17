@@ -74,8 +74,7 @@ namespace ExerciseProgram
                 string longname = node.Attributes?["fullname"]?.Value;
                 string loc = node.Attributes?["location"]?.Value;
                 string bodypart = node.Attributes?["bodypart"]?.Value;
-                string desc = node.Attributes?["description"]?.Value;
-                groups.Add(new MuscleGroup(name, longname, loc, bodypart, desc));
+                groups.Add(new MuscleGroup(name, longname, loc, bodypart));
             }
 
             return groups;

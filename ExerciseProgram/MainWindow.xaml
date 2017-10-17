@@ -28,12 +28,12 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label x:Name="label" Content="Exercise Type" HorizontalAlignment="Left" Margin="202,112,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label2" Content="Weight Type" HorizontalAlignment="Left" Margin="202,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.592,1.115"/>
-        <Label x:Name="label3" Content="Muscle Group" HorizontalAlignment="Left" Margin="13,23,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label4" Content="Exercises" HorizontalAlignment="Left" Margin="369,23,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Exercise Type" FontWeight="Bold" HorizontalAlignment="Left" Margin="202,112,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Weight Type" FontWeight="Bold" HorizontalAlignment="Left" Margin="202,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.592,1.115"/>
+        <Label x:Name="label3" Content="Muscle Group" FontWeight="Bold" HorizontalAlignment="Left" Margin="13,23,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label4" Content="Exercises" FontWeight="Bold" HorizontalAlignment="Left" Margin="369,23,0,0" VerticalAlignment="Top"/>
         <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="207,190,0,0" VerticalAlignment="Top" Width="75" Click="clearButton_Click"/>
         <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="23" Margin="525,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="searchBox_TextChanged"/>
-        <Label x:Name="label4_Copy" Content="Search:" HorizontalAlignment="Left" Margin="477,20,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label4_Copy" Content="Search:" FontStyle="Italic" HorizontalAlignment="Left" Margin="477,20,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
