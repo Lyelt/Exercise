@@ -19,7 +19,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox x:Name="exerciseListBox" HorizontalAlignment="Left" Height="485" Margin="369,49,0,0" VerticalAlignment="Top" Width="276">
+        <ListBox x:Name="exerciseListBox" HorizontalAlignment="Left" Height="485" Margin="369,49,0,0" VerticalAlignment="Top" Width="276" MouseDoubleClick="exerciseListBox_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

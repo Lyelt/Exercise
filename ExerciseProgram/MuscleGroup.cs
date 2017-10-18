@@ -8,17 +8,17 @@ namespace ExerciseProgram
 {
     public class MuscleGroup
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public string FullName { get; set; }
         public string BodyPart { get; set; }
-        public string Location { get; set; }
 
-        public MuscleGroup (string name, string fullName, string bodyPart, string loc)
+        public MuscleGroup (int id, string name, string fullName, string bodyPart)
         {
+            ID = id;
             Name = name;
             FullName = fullName;
             BodyPart = bodyPart;
-            Location = loc;
         }
     }
 }

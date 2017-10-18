@@ -71,6 +71,11 @@
       <DependentUpon>ExerciseExpansion.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExerciseItem.cs" />
+    <Compile Include="ExercisesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExercisesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Helpers.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -96,6 +101,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ExercisesDataSet.xsc">
+      <DependentUpon>ExercisesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ExercisesDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ExercisesDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ExercisesDataSet.xss">
+      <DependentUpon>ExercisesDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,6 +126,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="MuscleGroups.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Exercises.Sql" />
+    <Content Include="mgex.sql" />
+    <Content Include="MuscleGroups.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

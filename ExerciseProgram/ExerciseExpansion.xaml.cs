@@ -29,14 +29,18 @@ namespace ExerciseProgram
 
         public void BuildExerciseWindow()
         {
+            // Set the title and label content
             this.Title = ExItem.Name;
             etLabel.Content = ExItem.Type.ToString();
-            wtLabel.Content = ExItem.Weight.ToString();
             descLabel.Content = ExItem.Description;
+
+            // Muscle groups and weight types
             foreach (var mg in ExItem.Muscles)
-            {
                 mgLabel.Content += mg.Name + Environment.NewLine;
-            }
+            
+            foreach (var wt in ExItem.WeightTypes)
+                wtLabel.Content += wt.ToString() + Environment.NewLine;
+            
         }
     }
 }

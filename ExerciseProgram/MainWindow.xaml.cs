@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,13 @@ namespace ExerciseProgram
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string _muscleGroupFile = "MuscleGroups.xml";
-        private string _exerciseFile = "Exercises.xml";
+        private const string CONNSTRING = "Data Source=NICK\\SQLEXPRESS;Initial Catalog=Exercises;Integrated Security=True";
+        private const string EXERCISEQUERY = "SELECT * FROM ExerciseItems";
+        private const string ALLMGQUERY = "SELECT * FROM MuscleGroups";
+        private const string EXMGQUERY = "SELECT * FROM ExerciseMG WHERE ExerciseID = @exerciseID";
+        private const string MUSCLEQUERY = "SELECT * FROM MuscleGroups WHERE ID = @musclegroupID";
+        //private string _muscleGroupFile = "MuscleGroups.xml";
+        //private string _exerciseFile = "Exercises.xml";
 
         private string _searchFilter;
         private WeightType? _wtFilter;
@@ -57,82 +63,96 @@ namespace ExerciseProgram
             exerciseTypeComboBox.ItemsSource = Enum.GetValues(typeof(ExerciseType));
         }
 
-        public List<MuscleGroup> GetMuscleGroups()
+        public List<ExerciseItem> GetExercises()
+        {
+            var exercises = new List<ExerciseItem>();
+            using (SqlConnection conn = new SqlConnection(CONNSTRING))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(EXERCISEQUERY, conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                { 
+                    while (reader.Read())
+                    {
+                        int id = int.Parse(reader["ID"].ToString());
+                        string name = reader["Name"].ToString();
+                        string type = reader["Type"].ToString();
+                        List<MuscleGroup> groups = GetMuscleGroups(id);
+                        List<string> weightTypes = new List<string>(reader["WeightType"].ToString().Split('/'));
+
+                        exercises.Add(new ExerciseItem(id, name, groups, type, weightTypes));
+                    }
+                }
+            }
+           
+            return exercises;
+        }
+
+        /// <summary>
+        /// Gets list of all the muscle groups specified by the exercise ID
+        /// </summary>
+        /// <param name="ExerciseID">ID of the exercise to get the muscle groups for. -1 to get all muscle groups.</param>
+        /// <returns>List of muscle groups specified by exercise (or all)</returns>
+        private List<MuscleGroup> GetMuscleGroups(int ExerciseID = -1)
         {
             var groups = new List<MuscleGroup>();
-            XmlDocument xmlDoc = new XmlDocument();
-            try
+            using (SqlConnection conn = new SqlConnection(CONNSTRING))
             {
-                xmlDoc.Load(_muscleGroupFile);
-            }
-            catch { /* Error loading xml document */ }
-
-            var nodes = xmlDoc.GetElementsByTagName("group");
-            foreach (XmlNode node in nodes)
-            {
-                string name = node.Attributes?["name"]?.Value;
-                string longname = node.Attributes?["fullname"]?.Value;
-                string loc = node.Attributes?["location"]?.Value;
-                string bodypart = node.Attributes?["bodypart"]?.Value;
-                groups.Add(new MuscleGroup(name, longname, loc, bodypart));
+                conn.Open();
+                if (ExerciseID > -1)
+                {
+                    using (SqlCommand cmd = new SqlCommand(EXMGQUERY, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@exerciseID", ExerciseID);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                groups.Add(GetMuscleGroup(int.Parse(reader["MuscleGroupID"].ToString())));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    using (SqlCommand cmd = new SqlCommand(ALLMGQUERY, conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            groups.Add(GetMuscleGroup(int.Parse(reader["ID"].ToString())));
+                        }
+                    }
+                    
+                }
             }
 
             return groups;
         }
 
-        public List<ExerciseItem> GetExercises()
+        private MuscleGroup GetMuscleGroup(int mgID)
         {
-            var exercises = new List<ExerciseItem>();
-            XmlDocument xmlDoc = new XmlDocument();
-            try
+            MuscleGroup muscleGroup = null;
+            using (SqlConnection conn = new SqlConnection(CONNSTRING))
             {
-                xmlDoc.Load(_exerciseFile);
-            }
-            catch {  }
-
-            var exerciseNodes = xmlDoc.GetElementsByTagName("exercise");
-            foreach (XmlNode node in exerciseNodes)
-            {
-                string name = node.Attributes?["name"]?.Value;
-                string type = node.ParentNode.Name;
-                string weightType;
-
-                if (node.Attributes["weight"] != null)
-                    weightType = node.Attributes["weight"].Value;
-                else
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(MUSCLEQUERY, conn))
                 {
-                    switch (type.ToLower())
+                    cmd.Parameters.AddWithValue("@musclegroupID", mgID);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        case "strength":
-                            weightType = "Barbell";
-                            break;
-                        case "flexibility":
-                            weightType = "Bodyweight";
-                            break;
-                        case "aerobic":
-                            weightType = "Bodyweight";
-                            break;
-                        default:
-                            weightType = "Unknown";
-                            break;
+                        while (reader.Read())
+                        {
+                            int id = int.Parse(reader["ID"].ToString());
+                            string name = reader["Name"].ToString();
+                            string fullName = reader["FullName"].ToString();
+                            string bodyPart = reader["BodyPart"].ToString();
+                            muscleGroup = new MuscleGroup(id, name, fullName, bodyPart);
+                        }
                     }
                 }
-
-                List<MuscleGroup> groups = new List<MuscleGroup>();
-
-                // List of muscle groups
-                var groupNodes = node.SelectNodes("mg");
-                foreach (XmlNode mg in groupNodes)
-                {
-                    // Take the first matching muscle group
-                    MuscleGroup addMg = MuscleGroups.FirstOrDefault(m => m.Name.ToLower() == mg.InnerText.ToLower());
-                    groups.Add(addMg);
-                }
-
-                exercises.Add(new ExerciseItem(name, groups, type, weightType));
             }
-
-            return exercises;
+            return muscleGroup;
         }
 
         private List<ExerciseItem> GetFilteredExercises()
@@ -149,14 +169,14 @@ namespace ExerciseProgram
                         if (!ex.Name.Contains(_searchFilter, StringComparison.OrdinalIgnoreCase))
                             match = false;
 
-                    // filter by weight type
-                    if (_wtFilter != null)
-                        if (!(ex.Weight == _wtFilter))
-                            match = false;
-
                     // filter by exercise type
                     if (_etFilter != null)
                         if (!(ex.Type == _etFilter))
+                            match = false;
+
+                    // filter by weight type
+                    if (_wtFilter != null)
+                        if (!(ex.WeightTypes.Any(w=>w == _wtFilter)))
                             match = false;
 
                     // filter by selected muscle groups
@@ -234,5 +254,11 @@ namespace ExerciseProgram
             FilteredExercises = GetFilteredExercises();
         }
         #endregion
+
+        private void exerciseListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ExerciseExpansion newWindow = new ExerciseExpansion((ExerciseItem)exerciseListBox.SelectedItem);
+            newWindow.Show();
+        }
     }
 }
