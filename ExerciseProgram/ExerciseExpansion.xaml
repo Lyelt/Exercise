@@ -5,16 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExerciseProgram"
         mc:Ignorable="d"
-        Title="ExerciseExpansion" Height="542.545" Width="798.242">
+        Title="ExerciseExpansion" Height="582.545" Width="867.242">
     <Grid Margin="0,0,2,12">
         <Label x:Name="label" Content="Muscle Groups" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="95"/>
         <Label x:Name="label_Copy" Content="Weight Type(s)" FontWeight="Bold" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top" Width="120" Height="26"/>
         <Label x:Name="label_Copy1" Content="Exercise Type" FontWeight="Bold" HorizontalAlignment="Left" Margin="398,10,0,0" VerticalAlignment="Top" Width="88" Height="26"/>
-        <Label x:Name="label_Copy2" Content="Description" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="95"/>
-        <Label x:Name="mgLabel" Content="" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="140" Width="137"/>
+        <Label x:Name="label_Copy2" Content="Description" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="95"/>
+        <Label x:Name="mgLabel" Content="" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="96" Width="137"/>
         <Label x:Name="wtLabel" Content="" HorizontalAlignment="Left" Margin="216,41,0,0" VerticalAlignment="Top" Height="130" Width="137"/>
         <Label x:Name="etLabel" Content="" HorizontalAlignment="Left" Margin="398,41,0,0" VerticalAlignment="Top" Height="34" Width="140"/>
-        <Label x:Name="descLabel" Content="" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Height="140" Width="447"/>
+        <Label x:Name="descLabelWrapper" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Height="306" Width="305">
+            <TextBlock Name ="descLabel" TextWrapping="Wrap" Text="TextBlock" Height="296" Width="295"/>
+        </Label>
+        <Image Name="exerciseImage"  HorizontalAlignment="Left" Height="379" Margin="353,111,0,0" VerticalAlignment="Top" Width="425"/>
+        <TextBlock Margin="398,490,10,19"> 
+            <Hyperlink Name="hyperlink" RequestNavigate="Hyperlink_Click">
+                <TextBlock Name="hyperlinkText"/>
+            </Hyperlink></TextBlock>
 
     </Grid>
 </Window>

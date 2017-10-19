@@ -9,7 +9,7 @@
     <Grid Margin="0,0,11,-1">
         <ComboBox x:Name="weightTypeComboBox" HorizontalAlignment="Left" Margin="207,75,0,0" VerticalAlignment="Top" Width="102" SelectionChanged="weightTypeComboBox_SelectionChanged"/>
         <ComboBox x:Name="exerciseTypeComboBox" HorizontalAlignment="Left" Margin="207,138,0,0" VerticalAlignment="Top" Width="102" SelectionChanged="exerciseTypeComboBox_SelectionChanged"/>
-        <ListBox x:Name="muscleGroupListBox" HorizontalAlignment="Left" Height="186" Margin="13,49,0,0" VerticalAlignment="Top" Width="184" SelectionChanged="muscleGroupListBox_SelectionChanged">
+        <ListBox x:Name="muscleGroupListBox" HorizontalAlignment="Left" Height="302" Margin="13,49,0,0" VerticalAlignment="Top" Width="184" SelectionChanged="muscleGroupListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

@@ -79,8 +79,11 @@ namespace ExerciseProgram
                         string type = reader["Type"].ToString();
                         List<MuscleGroup> groups = GetMuscleGroups(id);
                         List<string> weightTypes = new List<string>(reader["WeightType"].ToString().Split('/'));
+                        string desc = reader["Description"].ToString();
+                        string imgSrc = reader["Image"].ToString();
+                        string lnk = reader["Link"].ToString();
 
-                        exercises.Add(new ExerciseItem(id, name, groups, type, weightTypes));
+                        exercises.Add(new ExerciseItem(id, name, groups, type, weightTypes, desc, imgSrc, lnk));
                     }
                 }
             }
